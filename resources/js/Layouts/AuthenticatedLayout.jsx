@@ -1,33 +1,24 @@
 import {DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from '@ant-design/icons';
-import {Breadcrumb, Layout, Menu, theme} from 'antd';
+import {Breadcrumb, Button, Layout, Menu, theme} from 'antd';
+import Dropdown from '@/Components/Dropdown'
 import React, {useState} from 'react';
-const {Header, Content, Footer, Sider} = Layout;
+import { Link} from "@inertiajs/inertia-react";
+import TopHeader from "@/Layouts/TopHeader";
 
-function getItem(label, key, icon, children) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    };
-}
+const { Content, Footer, Sider,Header } = Layout;
+
 
 const items = [
-    getItem('Option 1', '1', <PieChartOutlined/>),
-    getItem('Option 2', '2', <DesktopOutlined/>),
-    getItem('User', 'sub1', <UserOutlined/>, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined/>, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined/>),
-];
+    {
+        key:1,
+        icon:<UserOutlined/>,
+        label:"Customers",
+    },];
 const AuthenticatedLayout = ({auth, header, children}) => {
-    const [collapsed, setCollapsed] = useState(false);
     const {
         token: {colorBgContainer},
     } = theme.useToken();
+    const [collapsed, setCollapsed] = useState(false);
     return (
         <Layout
             style={{
@@ -42,7 +33,7 @@ const AuthenticatedLayout = ({auth, header, children}) => {
                         background: 'rgba(255, 255, 255, 0.2)',
                     }}
                 />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items}/>
+                <Menu theme={"dark"} defaultSelectedKeys={['1']} mode="inline" items={items}/>
             </Sider>
             <Layout className="site-layout">
                 <Header
@@ -50,7 +41,15 @@ const AuthenticatedLayout = ({auth, header, children}) => {
                         padding: 0,
                         background: colorBgContainer,
                     }}
+                    children={<TopHeader auth={auth}/>}
                 />
+                <hr/>
+                <div className="flex items-center h-[64px]" style={{
+                    background: colorBgContainer,
+                    padding:15
+                }}>
+                    {header}
+                </div>
                 <Content
                     style={{
                         margin: '0 16px',
