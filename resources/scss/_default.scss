@@ -1,0 +1,21 @@
+
+.primary-search {
+    width: 252px !important;
+    height: 34px !important;
+    background: #ffffff 0% 0% no-repeat padding-box !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    border: 1px solid #d4d4d4 !important;
+    padding: 8px !important;
+
+    input.ant-input {
+        font-size: 12px !important;
+    }
+
+    .ant-input-affix-wrapper,
+    .ant-input-affix-wrapper:hover,
+    .ant-input-affix-wrapper:active {
+        border: 1px solid #d4d4d4 !important;
+        box-shadow: none !important;
+    }
+}

@@ -13,7 +13,7 @@ function DeleteButton({ name = "", apiEndpoint = "", text = "" }) {
             },
             onError: (errors) => {
                 message.error(errors?.error_message);
-            },
+            }
         });
     };
     const { t } = useTranslation();
@@ -37,5 +37,5 @@ export default DeleteButton;
 DeleteButton.propTypes = {
     name: PropTypes.string,
     apiEndpoint: PropTypes.string,
-    text: PropTypes.string,
+    text: PropTypes.string
 };

@@ -11,7 +11,7 @@ const InputSwitch = ({
     handler = () => {},
     className = "",
     prefix = null,
-    suffix = null,
+    suffix = null
 }) => {
     return (
         <>
@@ -43,5 +43,5 @@ export default InputSwitch;
 InputSwitch.proptTypes = {
     name: proptypes.string,
     label: proptypes.string,
-    defaultChecked: proptypes.bool,
+    defaultChecked: proptypes.bool
 };
