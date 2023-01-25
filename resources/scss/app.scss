@@ -1,4 +1,8 @@
-//@tailwind base;
+@tailwind base;
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
 @tailwind components;
 @tailwind utilities;
 @import "default";

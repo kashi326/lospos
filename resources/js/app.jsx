@@ -1,5 +1,5 @@
-import "./bootstrap";
 import "../scss/app.scss";
+import "./bootstrap";
 
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/inertia-react";
@@ -7,8 +7,7 @@ import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ConfigProvider } from "antd";
 
-const appName =
-    window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
+const appName = window.document.getElementsByTagName("title")[0]?.innerText || "POS";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -19,7 +18,6 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
         root.render(
             <ConfigProvider
                 theme={{

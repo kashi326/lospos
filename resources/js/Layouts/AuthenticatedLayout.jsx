@@ -61,11 +61,11 @@ const AuthenticatedLayout = ({ header, children }) => {
                     }}
                     children={<TopHeader auth={auth} />}
                 />
-                <hr />
                 {header && (
                     <div
                         className="flex items-center h-[64px]"
                         style={{
+                            borderTop:"1px solid rgba(0,0,0,0.29)",
                             background: colorBgContainer,
                             padding: 15
                         }}

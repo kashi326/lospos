@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customers\CustomerRequest;
 use App\Models\Customer;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -13,11 +14,12 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
-        $customers = Customer::search($request->only(['search']))
+        $customers = Customer::search($request->only(['search']),['name','email','phone'])
             ->sort($request->only(['sort', 'order']))
             ->paginate($request->get('perPage', 10));
 
@@ -33,9 +35,9 @@ class CustomerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CustomerRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store(CustomerRequest $request)
+    public function store(CustomerRequest $request): RedirectResponse
     {
         $data = $request->validated();
         if ($request->post('id')) {
@@ -50,38 +52,16 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', 'Customer saved successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param Customer $customer
-     * @return Response
-     */
-    public function show(Customer $customer)
-    {
-        //
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        Customer::destroy($id);
+        return redirect()->back()->with('success', 'Customer deleted successfully');
     }
 }

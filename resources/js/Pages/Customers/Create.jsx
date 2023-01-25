@@ -8,9 +8,15 @@ import { Inertia } from "@inertiajs/inertia";
 import { formatErrors } from "@/Constants/globals";
 import InputRadio from "@/Components/Inputs/InputRadio";
 
-function CreateCustomer({ isModalVisible, closeModal }) {
+function CreateCustomer({ isModalVisible, closeModal,customer={} }) {
     const [form] = Form.useForm();
     const onFinish = (values) => {
+        if (customer.id) {
+            values = {
+                ...values,
+                id: customer.id
+            };
+        }
         Inertia.post(route("customers.store"), values, {
             onSuccess: () => {
                 closeModal();
@@ -29,7 +35,7 @@ function CreateCustomer({ isModalVisible, closeModal }) {
             destroyOnClose
             footer={null}
         >
-            <Form layout={"vertical"} onFinish={onFinish} form={form}>
+            <Form layout={"vertical"} onFinish={onFinish} form={form} initialValues={customer}>
                 <div className={"grid grid-cols-1 lg:grid-cols-2 gap-x-4"}>
                     <FormInput
                         rules={[requiredRule]}

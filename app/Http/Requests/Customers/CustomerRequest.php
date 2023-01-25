@@ -30,11 +30,11 @@ class CustomerRequest extends FormRequest
             'phone' => ['required','string'],
             'gender' => ['required','string'],
             'address' => ['required','string'],
-            'city' => 'string',
-            'state' => 'string',
-            'country' => 'string',
-            'zip' => 'string',
-            'notes'=>'string'
+            'city' => ['nullable','string'],
+            'state' => ['nullable','string'],
+            'country' => ['nullable','string'],
+            'zip' => ['nullable','string'],
+            'notes'=>['nullable','string']
         ];
     }
 }
